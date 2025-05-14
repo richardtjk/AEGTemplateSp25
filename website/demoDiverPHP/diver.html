@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <script>
+      var http = new XMLHttpRequest();
+      var url = 'diverPDO.php';
+      //var params = 'orem=ipsum&name=binny';
+      http.open('POST', url, true);
+
+      //Send the proper header information along with the request
+      http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+      http.onreadystatechange = function() {//Call a function when the state changes.
+          if(http.readyState == 4 && http.status == 200) {
+              divertable.innerHTML = http.responseText;
+          }
+      }
+     // http.send(params);
+     http.send();
+  </script>
+<body>
+
+
+<h1>Divers</h1>
+<p id="divertable"></p>
+
+<br>
+
+<form method="post" action="diverAdd.php">
+New Diver Name: <input name="diverName" type="text" > <input type=submit name="Add Diver"  >
+</form>
+
+<div id="result"></div>
+<body>
+<html>

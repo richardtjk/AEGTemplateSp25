@@ -1,0 +1,57 @@
+<html>
+  <head>
+  </head>
+  <body>
+	<h1>CS358 Software Engineering Principles - Agile Experience Group 8 Webserver</h1>
+	<br>
+	<a href="diver.html">Link to example PHP page</a>
+  <br>
+  <br>
+  Here is an example of querying for data you want to put on your page. 
+  The database id for Maisy is <input type="text" disabled id="maisyID">
+  <br>
+  <input type="button" onclick="getDiverID();" value="Get ID">
+  <input type="button" onclick="clearDiverID();" value="Clear ID">
+  
+    
+  </body>
+  <script>
+    function getDiverID(){
+        
+        const data = {
+          diverName: "Maisy"
+        };
+
+        fetch('diverFindID.php', {
+          method: 'POST', 
+          headers: {'Content-Type': 'application/json'}, 
+          body: JSON.stringify(data)
+        })
+        .then(response => {
+          if (!response.ok) {
+              // If the response status is not OK, throw an error
+              return response.json().then(error => {
+                //get the php error message from the json
+                throw new Error(error.phpError);
+              });
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log(data); // Process the data
+          //it returned an array of one, so index is 0; then the attribute is DiverID
+          maisyID.value = data[0].DiverID;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+        
+      }
+
+
+      function clearDiverID() {
+        maisyID.value = "NA";
+      }
+   
+  </script>
+</html>
