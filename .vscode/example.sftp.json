@@ -1,3 +1,8 @@
+Copy to sftp.json
+replace username -> your username
+remotePath -> replace jocelyn with your branch name
+this file will not work until you create the remote path on the server, see the readme instruction
+delete this instructions from the sftp.json file and then you will be able to upload or sync your files to the server
 {
     "name": "Agile Experience Server",
     "host": "104.131.178.112",
